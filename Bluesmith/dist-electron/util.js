@@ -9,6 +9,7 @@ export function isDev() {
 
 export function validateEventFrame(sender) {
     const frameUrl = sender.getURL();
+    console.log('Frame URL:', frameUrl);
 
     if (isDev()) {
         if (new URL(frameUrl).host === 'localhost:5173') {
@@ -26,6 +27,7 @@ export function ipcHandle(key, handler) {
     ipcMain.handle(key, async (event, ...args) => {
         try {
             validateEventFrame(event.sender);
+
             const result = await handler(...args);
             return result;
         } catch (error) {
