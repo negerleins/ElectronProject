@@ -1,0 +1,11 @@
+{
+    "appId": "com.bluesmith.app",
+    "files": ["dist-interface", "dist-electron"],
+    "extraResources": ["dist-electron/preload.cjs"],
+    "icon": "./src/interface/assets/icon.png",
+    "linux": {
+        "target": "AppImage",
+        "defaultArch": "x64",
+        "category": "Utility"
+    }
+}
