@@ -9,7 +9,6 @@ export function isDev() {
 
 export function validateEventFrame(sender) {
     const frameUrl = sender.getURL();
-    console.log('Frame URL:', frameUrl);
 
     if (isDev()) {
         if (new URL(frameUrl).host === 'localhost:5173') {
