@@ -25,10 +25,11 @@ export function validateEventFrame(sender) {
 export function ipcHandle(key, handler) {
     ipcMain.handle(key, async (event, ...args) => {
         try {
+            if (!event?.sender) {
+                throw new Error('Invalid IPC event: missing sender');
+            }
             validateEventFrame(event.sender);
-
-            const result = await handler(...args);
-            return result;
+            return await handler({ sender: event.sender }, ...args);
         } catch (error) {
             console.error(`IPC handler error for ${key}:`, error);
             throw error;
